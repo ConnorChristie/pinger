@@ -17,4 +17,10 @@ github-release upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag 
       }
     }
   }
+  environment {
+    GITHUB_ORGANIZATION = 'ConnorChristie'
+    GITHUB_REPO = 'pinger'
+    VERSION_NAME = '1.0'
+    PROJECT_NAME = 'DAB'
+  }
 }
