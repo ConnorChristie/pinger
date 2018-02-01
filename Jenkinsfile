@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    node {
+    node('deployer') {
       label 'deployer'
     }
     
@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('Deploy') {
       agent {
-        docker {
-          image 'centos'
+        node('deployer') {
+          label 'deployer'
         }
         
       }
