@@ -19,6 +19,6 @@ github-release upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag 
     GITHUB_REPO = 'pinger'
     VERSION_NAME = '1.0'
     PROJECT_NAME = 'DAB'
-    GITHUB_TOKEN = '20a14bb7ee8a2b739b19914d44acbbcf7003ca09'
+    GITHUB_TOKEN = 'credentials(\'github-secret\')'
   }
 }
