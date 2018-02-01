@@ -5,7 +5,7 @@ pipeline {
       steps {
         archiveArtifacts(allowEmptyArchive: true, artifacts: '.')
         sh '''echo "Exporting token and enterprise api to enable github-release tool"
-export GITHUB_TOKEN=9b7353edadefb04125f589f7f38a48b0e602990e
+export GITHUB_TOKEN= 20a14bb7ee8a2b739b19914d44acbbcf7003ca09
 
 echo "${GITHUB_ORGANIZATION} ${GITHUB_REPO} ${VERSION_NAME}"
 
