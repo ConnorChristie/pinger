@@ -4,7 +4,7 @@ pipeline {
     stage('Upload to Github') {
       steps {
         archiveArtifacts(allowEmptyArchive: true, artifacts: '.')
-        sh '''echo "${GITHUB_ORGANIZATION} ${GITHUB_REPO} ${VERSION_NAME}"
+        sh '''echo "${GITHUB_ORGANIZATION} ${GITHUB_REPO} ${VERSION_NAME} ${GITHUB_TOKEN}"
 
 echo "Creating a new release in github"
 github-release release --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${VERSION_NAME} --name "${VERSION_NAME}"
