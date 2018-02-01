@@ -3,10 +3,8 @@ pipeline {
   stages {
     stage('Upload to Github') {
       steps {
-        sh '''echo "Compressing artifacts into one file"
-zip -r artifacts.zip .
-
-echo "Exporting token and enterprise api to enable github-release tool"
+        archiveArtifacts(allowEmptyArchive: true, artifacts: '.')
+        sh '''echo "Exporting token and enterprise api to enable github-release tool"
 export GITHUB_TOKEN=9b7353edadefb04125f589f7f38a48b0e602990e
 
 echo "Creating a new release in github"
