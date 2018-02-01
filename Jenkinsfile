@@ -1,15 +1,15 @@
 pipeline {
   agent {
-    docker {
-      image 'centos'
+    node {
+      label 'deployer'
     }
     
   }
   stages {
     stage('Deploy') {
       agent {
-        node {
-          label 'deployer'
+        docker {
+          image 'centos'
         }
         
       }
