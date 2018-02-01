@@ -1,15 +1,7 @@
-pipeline {
-  agent {
+
+stage('Dev') {
     node('deployer') {
-      label 'deployer'
-    }
-    
-  }
-  stages {
-    stage('Deploy') {
-      node('deployer') {
         checkout scm
-        echo "workssss"
+        echo "workdsdsds"
     }
-  }
 }
