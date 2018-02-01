@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Upload to Github') {
       steps {
-        zip dir: '.', glob: '', zipFile: 'artifacts.zip'
+        zip(dir: '.', zipFile: 'artifacts.zip')
         sh '''echo "Uploading the artifacts into github"
-github-release upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${VERSION_NAME} --name "${PROJECT_NAME}-${TAG_NAME}.zip" --file artifacts.zip'''
+github-release upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${TAG_NAME} --name "${PROJECT_NAME}-${TAG_NAME}.zip" --file artifacts.zip'''
       }
     }
   }
