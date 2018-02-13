@@ -21,7 +21,6 @@ node /var/jenkins_home/dab_service/update_pusher.js ${TAG_NAME}'''
   environment {
     GITHUB_ORGANIZATION = 'ConnorChristie'
     GITHUB_REPO = 'pinger'
-    VERSION_NAME = '1.0'
     PROJECT_NAME = 'DAB'
     GITHUB_TOKEN = credentials('github-secret')
   }
