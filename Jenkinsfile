@@ -1,7 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Upload to Github') {
+    stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+    }
+    stage('Upload') {
       steps {
         zip(dir: '.', zipFile: 'artifacts.zip')
         sh '''echo "Creating a new release in github"
@@ -11,7 +16,7 @@ echo "Uploading the artifacts into github"
 ${GITHUB_RELEASE_BIN} upload --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME}.zip" --file artifacts.zip'''
       }
     }
-    stage('Update DAB') {
+    stage('Push') {
       steps {
         sh '''echo "Sending update command to DABs"
 node ${UPDATE_PUSHER} ${TAG_NAME}'''
