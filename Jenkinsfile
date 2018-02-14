@@ -27,7 +27,7 @@ node ${UPDATE_PUSHER} ${TAG_NAME}'''
     GITHUB_USER = 'ConnorChristie'
     GITHUB_REPO = 'pinger'
     GITHUB_TOKEN = credentials('github-secret')
-    UPDATE_PUSHER = '/var/jenkins_home/dab_service/update_pusher.js'
+    UPDATE_PUSHER = '/var/lib/jenkins/IoT-DAB-Deployer/updater/update_pusher.js'
     GITHUB_RELEASE_BIN = '/home/connorc/go/bin/github-release'
   }
 }
