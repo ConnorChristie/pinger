@@ -5,10 +5,10 @@ pipeline {
       steps {
         zip(dir: '.', zipFile: 'artifacts.zip')
         sh '''echo "Creating a new release in github"
-github-release release --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${TAG_NAME} --name "${TAG_NAME}"
+${GITHUB_RELEASE_BIN} release --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${TAG_NAME} --name "${TAG_NAME}"
 
 echo "Uploading the artifacts into github"
-github-release upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME}.zip" --file artifacts.zip'''
+${GITHUB_RELEASE_BIN} upload --user ${GITHUB_ORGANIZATION} --repo ${GITHUB_REPO} --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME}.zip" --file artifacts.zip'''
       }
     }
     stage('Update DAB') {
@@ -23,5 +23,6 @@ node ${UPDATE_PUSHER} ${TAG_NAME}'''
     GITHUB_REPO = 'pinger'
     GITHUB_TOKEN = credentials('github-secret')
     UPDATE_PUSHER = '/var/jenkins_home/dab_service/update_pusher.js'
+    GITHUB_RELEASE_BIN = '/home/connorc/go/bin/github-release'
   }
 }
