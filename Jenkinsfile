@@ -12,6 +12,7 @@ pipeline {
           GITHUB_RELEASE_EXISTS = sh(returnStatus: true, script: '${GITHUB_RELEASE_BIN} info --tag ${TAG_NAME}')
           return GITHUB_RELEASE_EXISTS != 0
         }
+        
       }
       steps {
         zip(dir: '.', zipFile: 'artifacts.zip')
@@ -25,7 +26,7 @@ ${GITHUB_RELEASE_BIN} upload --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME
     stage('Push') {
       steps {
         sh '''echo "Sending update command to DABs"
-node ${UPDATE_PUSHER} ${GITHUB_USER} ${GITHUB_REPO} ${TAG_NAME}'''
+node ${UPDATE_PUSHER} ${TAG_NAME}'''
       }
     }
   }
