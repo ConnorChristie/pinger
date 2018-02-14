@@ -19,7 +19,7 @@ ${GITHUB_RELEASE_BIN} upload --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME
     stage('Push') {
       steps {
         sh '''echo "Sending update command to DABs"
-node ${UPDATE_PUSHER} ${TAG_NAME}'''
+node ${UPDATE_PUSHER} ${GITHUB_USER} ${GITHUB_REPO} ${TAG_NAME}'''
       }
     }
   }
