@@ -7,6 +7,12 @@ pipeline {
       }
     }
     stage('Upload') {
+      when {
+        expression {
+          GITHUB_RELEASE_EXISTS = sh(returnStatus: true, script: '${GITHUB_RELEASE_BIN} info --tag ${TAG_NAME}')
+          return GITHUB_RELEASE_EXISTS == 0
+        }
+      }
       steps {
         zip(dir: '.', zipFile: 'artifacts.zip')
         sh '''echo "Creating a new release in github"
