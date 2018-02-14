@@ -10,7 +10,7 @@ pipeline {
       when {
         expression {
           GITHUB_RELEASE_EXISTS = sh(returnStatus: true, script: '${GITHUB_RELEASE_BIN} info --tag ${TAG_NAME}')
-          return GITHUB_RELEASE_EXISTS == 0
+          return GITHUB_RELEASE_EXISTS != 0
         }
       }
       steps {
