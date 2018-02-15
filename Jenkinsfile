@@ -25,6 +25,12 @@ ${GITHUB_RELEASE_BIN} upload --tag ${TAG_NAME} --name "${GITHUB_REPO}-${TAG_NAME
     }
     stage('Push') {
       steps {
+        def devices = input message: 'Devices to deploy to:',
+          parameters: [[$class: 'DropdownAutocompleteParameterDefinition', defaultValue: 'All', description: 'Device', dataProvider: [
+            "All",
+            "dabOne",
+            "dabTwo"
+          ]]]
         sh '''echo "Sending update command to DABs"
 node ${UPDATE_PUSHER} ${TAG_NAME}'''
       }
